@@ -1,0 +1,4 @@
+tophat -N 4 --read-edit-dist 4 -m 1 -i 10 -p 12  --b2-sensitive -T -o $OUTDIR/YQ1 -G $GTF/genes.gtf $REF/genome $DATA/YQ1.fq
+tophat -N 4 --read-edit-dist 4 -m 1 -i 10 -p 12  --b2-sensitive -T -o $OUTDIR/YQ2 -G $GTF/genes.gtf $REF/genome $DATA/YQ2.fq
+tophat -N 4 --read-edit-dist 4 -m 1 -i 10 -p 12  --b2-sensitive -T -o $OUTDIR/YQ3 -G $GTF/genes.gtf $REF/genome $DATA/YQ3.fq
+tophat -N 4 --read-edit-dist 4 -m 1 -i 10 -p 12  --b2-sensitive -T -o $OUTDIR/YQ4 -G $GTF/genes.gtf $REF/genome $DATA/YQ4.fq

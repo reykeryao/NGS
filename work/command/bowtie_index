@@ -1,0 +1,1 @@
+bowtie2-build $REF/mRNA_unigene.fa $REF/mRNA_unigene1

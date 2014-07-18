@@ -1,0 +1,1 @@
+java -jar $RNASE/RNA-SeQC_v1.1.8.jar -o $DATA/YQ1/RNASeQC -r $REF/genome.fa -t $GTF/genes.gtf -s "YQ|$DATA/YQ1/uniq_hits_fix_sort.bam|None"

@@ -1,0 +1,2 @@
+java -jar $PICARD/ReorderSam.jar I=$DATA/YQ3/uniq_hits_fix.bam O=$DATA/YQ3/uniq_hits_fix_sort.bam R=$REF/genome.fa
+

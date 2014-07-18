@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# Simple SGE script for submitting multiple serial
+# jobs (e.g. parametric studies) using a script wrapper
+# to launch the jobs.
+#
+# To use, build the launcher executable and your
+# serial application(s) and place them in your WORKDIR
+# directory.  Then, edit the CONTROL_FILE to specify 
+# each executable per process.
+#-------------------------------------------------------
+#-------------------------------------------------------
+# 
+#         <------ Setup Parameters ------>
+#
+#$ -N regroup
+#$ -pe 12way 24
+#$ -q normal
+#$ -o regroup.o$JOB_ID
+#$ -l h_rt=02:00:00
+#$ -V
+#$ -cwd
+#$ -A 2013lambowitz
+
+module load launcher
+module load java64
+export PICARD=$HOME/local/bin/picard-tools-1.115
+export DATA=$HOME/NGS/Work/JA14460/Align/transcriptome
+
+
+
+export EXECUTABLE=$TACC_LAUNCHER_DIR/init_launcher 
+export CONTROL_FILE=regroup
+export WORKDIR=.
+# 
+# Variable description:
+#
+#  EXECUTABLE     = full path to the job launcher executable
+#  CONTROL_FILE   = text input file which specifies
+#                   executable for each process
+#                   (should be located in WORKDIR)
+#  WORKDIR        = location of working directory
+#
+#      <------ End Setup Parameters ------>
+#--------------------------------------------------------
+#--------------------------------------------------------
+
+#----------------
+# Error Checking
+#----------------
+
+if [ ! -e $WORKDIR ]; then
+    echo " "
+    echo "Error: unable to change to working directory."
+	echo "       $WORKDIR"
+	echo " "
+	echo "Job not submitted."
+	exit
+fi
+
+if [ ! -f $EXECUTABLE ]; then
+	echo " "
+	echo "Error: unable to find launcher executable $EXECUTABLE."
+	echo " "
+	echo "Job not submitted."
+	exit
+fi
+
+if [ ! -f $WORKDIR/$CONTROL_FILE ]; then
+	echo " "
+	echo "Error: unable to find input control file $CONTROL_FILE."
+	echo " "
+	echo "Job not submitted."
+	exit
+fi
+
+
+#----------------
+# Job Submission
+#----------------
+
+cd $WORKDIR/
+echo " WORKING DIR:   $WORKDIR/"
+
+$TACC_LAUNCHER_DIR/paramrun $EXECUTABLE $CONTROL_FILE
+
+echo " "
+echo " Parameteric Job Complete"
+echo " "

@@ -1,0 +1,4 @@
+bowtie2 -p 12 --local --very-sensitive --norc -x $REF/mRNA_unigene -U $DATA/YQ1.3.fq | samtools view -bS - > $ALIGN/YQ1_unigene.bam
+bowtie2 -p 12 --local --very-sensitive --norc -x $REF/mRNA_unigene -U $DATA/YQ2.3.fq | samtools view -bS - > $ALIGN/YQ2_unigene.bam
+bowtie2 -p 12 --local --very-sensitive --norc -x $REF/mRNA_unigene -U $DATA/YQ3.3.fq | samtools view -bS - > $ALIGN/YQ3_unigene.bam
+bowtie2 -p 12 --local --very-sensitive --norc -x $REF/mRNA_unigene -U $DATA/YQ4.3.fq | samtools view -bS - > $ALIGN/YQ4_unigene.bam

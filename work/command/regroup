@@ -1,0 +1,1 @@
+java -jar $PICARD/AddOrReplaceReadGroups.jar I=$DATA/YQ2/uniq_hits.bam O=$DATA/YQ2/uniq_hits_fix.bam LB=lane6 PL=illumina PU=lane6 SM=lane6 
